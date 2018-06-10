@@ -79,7 +79,7 @@ endif
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=3
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -109,7 +109,7 @@ set magic
 " Show matching brackets when text indicator is over them
 set showmatch 
 " How many tenths of a second to blink when matching brackets
-set mat=2
+set mat=3
 
 " No annoying sound on errors
 set noerrorbells
@@ -144,7 +144,8 @@ catch
 endtry
 
 set background=dark
-
+" some inconsistency: See the extended .vimrc for more background options. I had 
+" to add some additional stuff to get rid of the (annoying) grey background.
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
@@ -163,7 +164,7 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
+" Turn backup off, since most stuff is in SVN, git etc anyway...
 set nobackup
 set nowb
 set noswapfile
@@ -270,7 +271,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+" map 0 ^ ==> I disabled this stupid option
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z

@@ -29,8 +29,22 @@ set guioptions-=L
 
 " Colorscheme
 set background=dark
-colorscheme peaksea
-
+let g:solarized_termcolors=256 
+" required for the non-default color scheme
+colorscheme solarized 
+highlight Normal ctermbg=Black 
+" sets background color
+highlight NonText ctermbg=Black
+" sets background color of non-text
+highlight clear LineNr
+" sets background color of line number bar to that of background
+highlight clear SignColumn
+" sets background color of so-called sign column to that of background
+" default color scheme: peaksea
+" to get the default appearance, comment all 'highlight' commands
+" other schemes: ir_black, solarized, mayansmoke, pyte
+" another custom script to set visual mode highlighting colors:
+" hi Visual guibg=white guifg=black gui=NONE ctermfg=black ctermbg=white cterm=reverse
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs

@@ -8,3 +8,5 @@ my_plugins/
 my_configs.vim
 tags
 .DS_Store
+*.sh
+README_ultimate_vimrc.md
