@@ -47,6 +47,9 @@ let mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" Fast quitting
+nmap <leader>qq :q<cr>
+
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
@@ -79,7 +82,7 @@ endif
 set ruler
 
 " Height of the command bar
-set cmdheight=3
+set cmdheight=2
 
 " A buffer becomes hidden when it is abandoned
 set hid
