@@ -13,3 +13,34 @@ set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 " remap <ESC> to <leader>nn
 inoremap <leader>nn <ESC>
 
+
+" Go-Vim remaps and settings
+" disable location lists for go-vim
+let g:go_list_type = "quickfix"
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+" toggle test coverage profile with leader<c>
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+" some optional go syntax highlighting
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+
+
