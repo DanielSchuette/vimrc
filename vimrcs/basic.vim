@@ -47,9 +47,6 @@ let mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" Fast quitting
-nmap <leader>qq :q<cr>
-
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
@@ -58,8 +55,8 @@ command W w !sudo tee % > /dev/null
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+" Set 3 lines to the cursor - when moving vertically using j/k
+set so=3
 
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en' 
@@ -186,7 +183,7 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Linebreak on 500 characters
+" Linebreak on 500 characters; this option basically adds some right margin
 set lbr
 set tw=500
 

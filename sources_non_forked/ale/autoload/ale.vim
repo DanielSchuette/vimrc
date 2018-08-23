@@ -95,7 +95,7 @@ function! ale#Queue(delay, ...) abort
         throw "linting_flag must be either '' or 'lint_file'"
     endif
 
-    if type(l:buffer) != type(0)
+    if type(l:buffer) isnot v:t_number
         throw 'buffer_number must be a Number'
     endif
 
@@ -192,14 +192,14 @@ endfunction
 " Every variable name will be prefixed with 'ale_'.
 function! ale#Var(buffer, variable_name) abort
     let l:full_name = 'ale_' . a:variable_name
-    let l:vars = getbufvar(str2nr(a:buffer), '', 0)
-
-    if l:vars is 0
-        " Look for variables from deleted buffers, saved from :ALEFix
-        let l:vars = get(get(g:ale_fix_buffer_data, a:buffer, {}), 'vars', {})
-    endif
+    let l:vars = getbufvar(str2nr(a:buffer), '', {})
 
     return get(l:vars, l:full_name, g:[l:full_name])
+endfunction
+
+" As above, but curry the arguments so only the buffer number is required.
+function! ale#VarFunc(variable_name) abort
+    return {buf -> ale#Var(buf, a:variable_name)}
 endfunction
 
 " Initialize a variable with a default value, if it isn't already set.
@@ -211,6 +211,25 @@ function! ale#Set(variable_name, default) abort
     if !has_key(g:, l:full_name)
         let g:[l:full_name] = a:default
     endif
+endfunction
+
+" Given a string for adding to a command, return the string padded with a
+" space on the left if it is not empty. Otherwise return an empty string.
+"
+" This can be used for making command strings cleaner and easier to test.
+function! ale#Pad(string) abort
+    return !empty(a:string) ? ' ' . a:string : ''
+endfunction
+
+" Given a environment variable name and a value, produce part of a command for
+" setting an environment variable before running a command. The syntax will be
+" valid for cmd on Windows, or most shells on Unix.
+function! ale#Env(variable_name, value) abort
+    if has('win32')
+        return 'set ' . a:variable_name . '=' . ale#Escape(a:value) . ' && '
+    endif
+
+    return a:variable_name . '=' . ale#Escape(a:value) . ' '
 endfunction
 
 " Escape a string suitably for each platform.

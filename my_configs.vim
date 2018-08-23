@@ -1,18 +1,25 @@
+" some general configs
+" some additional modifications are made to the basic.vim file as well (e.g. color scheme)
 set number
 set relativenumber
-set textwidth=250
+set textwidth=0 wrapmargin=0 "disable physical line wrapping
+
+
+" display indentation guides
+"set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:× 
+
 nnoremap <Space> i<Space><Right><ESC>
 nmap <S-Enter> O<ESC>
 nmap <CR> o<ESC>k
 
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
-" I remapped :q to <leader>qq in the basic .vimrc file
-" some additional changes are in that file as well (e.g. color scheme)
 
 " remap <ESC> to <leader>nn
 inoremap <leader>nn <ESC>
 
+" Fast quitting
+nmap <leader>qq :q<cr>
 
 " Go-Vim remaps and settings
 " disable location lists for go-vim
@@ -53,4 +60,13 @@ set updatetime=100
 " automatically highlight matching identifiers
 let g:go_auto_sameids = 1
 
+" Ale linter configs
+" Set `ale_fix_on_save' to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
 
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
+" Enable auto-completion using github.com/maralla/completor.vim
+let g:completor_gocode_binary = '/Users/daniel/Documents/GitHub/go/src/github.com/nsf/gocode/'
+let g:completor_python_binary = '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3'
